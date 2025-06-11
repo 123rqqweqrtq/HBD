@@ -189,6 +189,19 @@
       { question: "Ты меня любишь?", options: ["Да", "Наверно"], correctIndex: 0 }
     ];
 
+    const buttonTexts = [
+      "Точно?",
+      "Точно хочешь?",
+      "А может не стоит?",
+      "Там нет ничего",
+      "Поверь мне",
+      "ТАМ ТОЧНО НИЧЕГО НЕТУ",
+      "ДА НЕТУ ТАМ НИЧЕГО",
+      "ТАМ ПУСТО",
+      "И зачем ты листаешь дальше?",
+      "Но там же пусто..."
+    ];
+
     const startButton = document.getElementById('startButton');
     const startArea = document.getElementById('startArea');
     const quiz = document.getElementById('quiz');
@@ -196,13 +209,19 @@
     const gameBlock = document.getElementById('gameBlock');
     const finalMessage = document.getElementById('finalMessage');
 
+    let currentButtonIndex = 0;
     let currentQuestionIndex = 0;
     let currentNumber = 1;
 
     startButton.addEventListener('click', () => {
-      startArea.style.display = 'none';
-      quiz.style.display = 'block';
-      showQuestion(0);
+      currentButtonIndex++;
+      if (currentButtonIndex < buttonTexts.length) {
+        startButton.textContent = buttonTexts[currentButtonIndex];
+      } else {
+        startArea.style.display = 'none';
+        quiz.style.display = 'block';
+        showQuestion(0);
+      }
     });
 
     function showQuestion(index) {
